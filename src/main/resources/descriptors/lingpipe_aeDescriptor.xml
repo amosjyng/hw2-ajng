@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>CrapCollectionReader</implementationName>
-  <processingResourceMetaData>
-    <name>collectionReaderDescriptor</name>
+  <primitive>true</primitive>  <annotatorImplementationName>com.amosjyng.JaCasAnnotator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>aeDescriptor</name>
     <description/>
     <version>1.0</version>
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>ShitString</name>
-        <description>Input string</description>
+        <name>genesFilename</name>
+        <description>Filename for genes model</description>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -18,15 +18,15 @@
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>ShitString</name>
+        <name>genesFilename</name>
         <value>
-          <string>hw1.in</string>
+          <string>model/ne-en-bio-genetag.HmmChunker</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import name="typeSystemDescriptor"/>
+        <import name="descriptors.amos_types"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>
@@ -40,9 +40,9 @@
     </capabilities>
   <operationalProperties>
       <modifiesCas>true</modifiesCas>
-      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
-      <outputsNewCASes>true</outputsNewCASes>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
-  </processingResourceMetaData>
+  </analysisEngineMetaData>
   <resourceManagerConfiguration/>
-</collectionReaderDescription>
+</analysisEngineDescription>

@@ -84,6 +84,11 @@
 			<artifactId>stanford-ner</artifactId>
 			<version>pre-maven</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.commons.lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:git@github.com:amosjyng/hw1-ajng</connection>

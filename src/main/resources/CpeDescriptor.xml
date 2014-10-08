@@ -2,19 +2,19 @@
     <collectionReader>
         <collectionIterator>
             <descriptor>
-                <import location="collectionReaderDescriptor.xml"/>
+                <import location="descriptors/collectionReaderDescriptor.xml"/>
             </descriptor>
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="1" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="AEDescriptor">
+        <casProcessor deployment="integrated" name="Lingpipe_AEDescriptor">
             <descriptor>
-                <import location="aeDescriptor.xml"/>
+                <import location="descriptors/lingpipe_aeDescriptor.xml"/>
             </descriptor>
         </casProcessor>
         <casProcessor deployment="integrated" name="ConsumeristDescriptor">
             <descriptor>
-                <import location="casConsumerDescriptor.xml"/>
+                <import location="descriptors/casConsumerDescriptor.xml"/>
             </descriptor>
         </casProcessor>
     </casProcessors>

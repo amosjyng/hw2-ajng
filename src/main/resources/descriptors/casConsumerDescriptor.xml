@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>CrappyCASConsumer</implementationName>
+  <implementationName>com.amosjyng.CrappyCASConsumer</implementationName>
   <processingResourceMetaData>
     <name>casConsumerDescriptor</name>
     <description/>
@@ -10,23 +10,23 @@
     <configurationParameters>
       <configurationParameter>
         <name>outputFilename</name>
-        <description>output filename</description>
+        <description>Filename for output file</description>
         <type>String</type>
         <multiValued>false</multiValued>
-        <mandatory>false</mandatory>
+        <mandatory>true</mandatory>
       </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
         <name>outputFilename</name>
         <value>
-          <string>hw1-ajng.out</string>
+          <string>src/main/resources/data/hw2-ajng.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import name="typeSystemDescriptor"/>
+        <import name="descriptors.amos_types"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>
