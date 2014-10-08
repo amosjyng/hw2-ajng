@@ -91,7 +91,7 @@
 		</dependency>
 	</dependencies>
 	<scm>
-		<connection>scm:git:git@github.com:amosjyng/hw1-ajng</connection>
-		<developerConnection>scm:git:git@github.com:amosjyng/hw1-ajng</developerConnection>
+		<connection>scm:git:git@github.com:amosjyng/hw2-ajng</connection>
+		<developerConnection>scm:git:git@github.com:amosjyng/hw2-ajng</developerConnection>
 	</scm>
 </project>
