@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.util.Scanner;
 
@@ -37,16 +38,11 @@ public class CrapCollectionReader extends CollectionReader_ImplBase {
   @Override
   public void initialize() throws ResourceInitializationException {
     try {
-      sc = new Scanner(new BufferedReader(new FileReader(URLDecoder.decode(getClass()
-              .getClassLoader().getResource((String) getConfigParameterValue("inputFilename"))
-              .getFile(), "UTF-8"))));
+      sc = new Scanner(new BufferedReader(new InputStreamReader(getClass().getClassLoader()
+              .getResourceAsStream((String) getConfigParameterValue("inputFilename")), "utf-8")));
     } catch (Exception e) {
       e.printStackTrace();
-      try {
-        Thread.sleep(10000);
-      } catch (InterruptedException e1) {
-        e1.printStackTrace();
-      }
+      System.exit(1);
     }
 
     super.initialize();
@@ -70,6 +66,7 @@ public class CrapCollectionReader extends CollectionReader_ImplBase {
     } catch (CASException e) {
       e.printStackTrace();
     }
+    System.err.println("Created CAS id " + shits[0] + " fucking parag!");
   }
 
   /**

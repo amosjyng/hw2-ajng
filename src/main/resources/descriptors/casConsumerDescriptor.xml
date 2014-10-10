@@ -20,7 +20,7 @@
       <nameValuePair>
         <name>outputFilename</name>
         <value>
-          <string>src/main/resources/data/hw2-ajng.out</string>
+          <string>hw2-ajng.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

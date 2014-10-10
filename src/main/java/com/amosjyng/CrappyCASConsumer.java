@@ -4,6 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -34,8 +38,10 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
    */
   @Override
   public void initialize() throws ResourceInitializationException {
+    System.err.println("Consuming shit");
     try {
-      bw = new BufferedWriter(new FileWriter(new File((String) getConfigParameterValue("outputFilename"))));
+      bw = new BufferedWriter(new FileWriter(new File(
+              (String) getConfigParameterValue("outputFilename"))));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -56,12 +62,25 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
               .getAllIndexedFS(ShittySentenceID.type).get()).getID(); // only one
       FSIterator<TOP> it = jacass.getJFSIndexRepository().getAllIndexedFS(
               NamedEntityAnnotation.type);
+      Map<String, Double> nes = new HashMap<String, Double>();
       while (it.hasNext()) {
         NamedEntityAnnotation nea = ((NamedEntityAnnotation) it.get());
-        bw.write(id + "|" + nea.getBegin() + " " + nea.getEnd() + "|" + nea.getNamedEntity() + "\n");
+        String nesStr = id + "|" + nea.getBegin() + " " + nea.getEnd() + "|" + nea.getNamedEntity() + "\n";
+        if (!nes.containsKey(nesStr) || (nea.getConfidence() > nes.get(nesStr))) {
+          nes.put(nesStr, nea.getConfidence());
+        }
         it.next();
       }
+      for (Map.Entry<String, Double> i : nes.entrySet()) {
+        if (i.getValue() > 0.85) {
+          bw.write(i.getKey());
+        }
+        else {
+          //System.err.println("failed for " + i.getKey() + " with score " + i.getValue());
+        }
+      }
       bw.flush();
+      System.err.println("flushed the toilet for " + id);
     } catch (CASException e) {
       e.printStackTrace();
     } catch (IOException e) {

@@ -7,11 +7,12 @@
         </collectionIterator>
     </collectionReader>
     <casProcessors casPoolSize="1" processingUnitThreadCount="1">
-        <casProcessor deployment="integrated" name="Lingpipe_AEDescriptor">
+        <casProcessor deployment="integrated" name="genetag_AEDescriptor">
             <descriptor>
                 <import location="descriptors/lingpipe_aeDescriptor.xml"/>
             </descriptor>
         </casProcessor>
+        
         <casProcessor deployment="integrated" name="ConsumeristDescriptor">
             <descriptor>
                 <import location="descriptors/casConsumerDescriptor.xml"/>
