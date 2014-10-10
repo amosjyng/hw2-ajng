@@ -49,7 +49,9 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
   }
 
   /**
-   * Write out all the recognized genes, along with string locations, and sentence ID
+   * Write out all the recognized genes, along with string locations, and sentence ID Only write out
+   * genes with a high confidence score, and a short length (long names are more likely to not be
+   * genes, it seems)
    * 
    * @param arg0
    *          CAS containing all the recognized genes for a certain sentence
@@ -65,7 +67,8 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
       Map<String, Double> nes = new HashMap<String, Double>();
       while (it.hasNext()) {
         NamedEntityAnnotation nea = ((NamedEntityAnnotation) it.get());
-        String nesStr = id + "|" + nea.getBegin() + " " + nea.getEnd() + "|" + nea.getNamedEntity() + "\n";
+        String nesStr = id + "|" + nea.getBegin() + " " + nea.getEnd() + "|" + nea.getNamedEntity()
+                + "\n";
         if (!nes.containsKey(nesStr) || (nea.getConfidence() > nes.get(nesStr))) {
           nes.put(nesStr, nea.getConfidence());
         }
@@ -74,9 +77,8 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
       for (Map.Entry<String, Double> i : nes.entrySet()) {
         if (i.getValue() > 0.5 && i.getKey().length() < 50) {
           bw.write(i.getKey());
-        }
-        else {
-          //System.err.println("failed for " + i.getKey() + " with score " + i.getValue());
+        } else {
+          // System.err.println("failed for " + i.getKey() + " with score " + i.getValue());
         }
       }
       bw.flush();

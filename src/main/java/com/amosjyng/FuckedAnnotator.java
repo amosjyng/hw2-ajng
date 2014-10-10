@@ -48,7 +48,8 @@ public class FuckedAnnotator extends JCasAnnotator_ImplBase {
   }
 
   /**
-   * Annotate shits in the sentence and add annotations to JCas
+   * Annotate shits in the sentence and add annotations to JCas, and stores confidence value in the
+   * annotation as well
    */
   @Override
   public void process(JCas arg0) throws AnalysisEngineProcessException {
