@@ -12,7 +12,11 @@
                 <import location="descriptors/lingpipe_aeDescriptor.xml"/>
             </descriptor>
         </casProcessor>
-        
+        <casProcessor deployment="integrated" name="genia_AEDescriptor">
+            <descriptor>
+                <import location="descriptors/lingpipe2_aeDescriptor.xml"/>
+            </descriptor>
+        </casProcessor>
         <casProcessor deployment="integrated" name="ConsumeristDescriptor">
             <descriptor>
                 <import location="descriptors/casConsumerDescriptor.xml"/>

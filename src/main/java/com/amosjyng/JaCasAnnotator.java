@@ -31,7 +31,7 @@ public class JaCasAnnotator extends JCasAnnotator_ImplBase {
   /**
    * The chunker that, given a gene model file, chunks the sentence into chunks of genes
    */
-  ConfidenceChunker chunker;
+  Chunker chunker;
 
   /**
    * Load up the gene model file
@@ -40,7 +40,7 @@ public class JaCasAnnotator extends JCasAnnotator_ImplBase {
   public void initialize(org.apache.uima.UimaContext aContext)
           throws org.apache.uima.resource.ResourceInitializationException {
     try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(getClass(),
+      chunker = (Chunker) AbstractExternalizable.readResourceObject(getClass(),
               (String) aContext.getConfigParameterValue("genesFilename"));
     } catch (Exception e) {
       e.printStackTrace();
@@ -68,15 +68,13 @@ public class JaCasAnnotator extends JCasAnnotator_ImplBase {
   @Override
   public void process(JCas arg0) throws AnalysisEngineProcessException {
     String docText = arg0.getDocumentText();
-    Iterator<Chunk> chunky = chunker.nBestChunks(docText.toCharArray(), 0, docText.length(), 10);
-    while (chunky.hasNext()) {
-      Chunk chunk = chunky.next();
+    for (Chunk chunk : chunker.chunk(docText).chunkSet()) {
       NamedEntityAnnotation nea = new NamedEntityAnnotation(arg0);
       nea.setBegin(chunk.start() - countSpaces(docText, chunk.start()));
       nea.setEnd(chunk.end() - countSpaces(docText, chunk.end()) - 1);
       nea.setNamedEntity(docText.substring(chunk.start(), chunk.end()));
       nea.setCasProcessorId("jackass");
-      nea.setConfidence(importance + Math.pow(2, chunk.score()));
+      nea.setConfidence(importance); //+ Math.pow(2, chunk.score()));
       nea.addToIndexes();
     }
     System.err.println("id "

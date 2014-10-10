@@ -89,6 +89,11 @@
 			<artifactId>org.apache.commons.lang</artifactId>
 			<version>2.6</version>
 		</dependency>
+		<dependency>
+			<groupId>abner</groupId>
+			<artifactId>abner</artifactId>
+			<version>1.5</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:git@github.com:amosjyng/hw2-ajng</connection>
