@@ -72,7 +72,7 @@ public class CrappyCASConsumer extends CasConsumer_ImplBase {
         it.next();
       }
       for (Map.Entry<String, Double> i : nes.entrySet()) {
-        if (i.getValue() > 0.85) {
+        if (i.getValue() > 0.5 && i.getKey().length() < 50) {
           bw.write(i.getKey());
         }
         else {
